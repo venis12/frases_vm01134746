@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div id="app">
+        <h2 class="text-center my-4">LISTA DE FRASES</h2>
+        <h4 class="text-end">Contador: {{ contador }}</h4>
+
+        <div>
+            Frase: <input type="text" class="text-center my-4" v-model="NFrase" placeholder="añadir la frase nueva">
+            Actor: <input type="text" class="text-center my-4" v-model="NAutor" placeholder="Actor">
+
+            <button @click="agregar">agregar</button>
+        </div>
+        <table class="table mt-3">
+            <thead>
+                <tr>
+                    <th scope="col">FRASE</th>
+                    <th scope="col">AUTOR</th>
+                    <th scope="col">ACCIONES</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(fra, index) in FrasesFinales" :key="index">
+                    <td scope="row">{{fra.frase}}</td>
+                    <td scope="row">{{fra.autor}}</td>
+                    <td>
+                        <button @click="eliminar(num)"><i class="bi bi-trash" style="color: red;"></i></button>
+                    </td>
+                    <td>
+                        <button @click="editar(index)"><i class="bi bi-pencil-square" style="color: blue;"></i></button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <div v-if="editando" class="card mt-3">
+            <div class="card-body">
+                <h5 class="card-title">Editar Frase</h5>
+                <div class="mb-3">
+                    <label class="form-label">Frase</label>
+                    <input type="text" v-model="editFrase" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Autor</label>
+                    <input type="text" v-model="editAutor" class="form-control">
+                </div>
+                <button @click="guardar" class="btn btn-success">Guardar</button>
+                <button @click="cancelar" class="btn btn-secondary">Cancelar</button>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>
